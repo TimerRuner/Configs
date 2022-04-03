@@ -1,0 +1,22 @@
+$border: 1px solid #ccc;
+
+.card {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: $border;
+
+  h2 {
+    text-align: center;
+    color: darkred;
+  }
+}
+
+.logo {
+  background-image: url("../assets/img/webpack-logo.png");
+  background-size: cover;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
