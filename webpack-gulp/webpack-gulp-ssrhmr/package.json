@@ -4,9 +4,11 @@
     "description": "",
     "main": "",
     "scripts": {
-        "dev": "env NODE_ENV=development node ./bin/dev.js gulp",
-        "build:prod": "env NODE_ENV=production gulp build --build webpack --config webpack.config.js",
-        "build:dev": "env NODE_ENV=development gulp webpack --config webpack.config.js",
+        "dev": "env NODE_ENV=development node ./bin/dev.js",
+        "gulp:dev": "gulp",
+        "gulp:prod": "gulp build --build",
+        "build:prod": "env NODE_ENV=production webpack --config webpack.config.js",
+        "build:dev": "env NODE_ENV=development webpack --config webpack.config.js",
         "zip": "gulp deployZIP --build",
         "deploy": "gulp deployFTP --build",
         "svgSprive": "gulp svgSprive"

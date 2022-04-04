@@ -1,11 +1,11 @@
 // Получаем имя папки проекта
-import * as nodePath from "path"
+const nodePath = require("path")
 const rootFolder = nodePath.basename(nodePath.resolve())
 
 const buildFolder = `./dist` // Также можно использовать rootFolder
 const srcFolder = `./src`
 
-export const path = {
+const path = {
     build: {
         js: `${buildFolder}/js/`,
         css: `${buildFolder}/css/`,

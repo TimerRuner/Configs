@@ -6,6 +6,7 @@ function HeaderComponent() {
     return (
         <header>
             <h1 className={styles.example}>Reddit for our own</h1>
+            <img src="/dist/img/cover.webp" />
         </header>
     )
 }

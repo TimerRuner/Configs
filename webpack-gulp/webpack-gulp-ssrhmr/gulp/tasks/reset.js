@@ -1,4 +1,4 @@
-import del from "del";
-export const reset = () => {
-	return del(app.path.clean);
+const del = require("del")
+const reset = () => {
+    return del(app.path.clean)
 }
