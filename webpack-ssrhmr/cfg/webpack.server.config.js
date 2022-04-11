@@ -2,6 +2,8 @@ const path = require("path")
 const nodeExternals = require("webpack-node-externals")
 const NODE_ENV = process.env.NODE_ENV
 const GLOBAL_CSS_REGEXP = /\.global\.css$/
+const IS_DEV = NODE_ENV === "development"
+const { DefinePlugin } = require("webpack")
 
 module.exports = {
     target: "node",
@@ -47,4 +49,6 @@ module.exports = {
     optimization: {
         minimize: false,
     },
+    devtool: IS_DEV ? "eval" : false,
+    plugins: [new DefinePlugin({})],
 }

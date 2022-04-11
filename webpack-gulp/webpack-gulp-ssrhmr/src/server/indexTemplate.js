@@ -1,4 +1,4 @@
-export const indexTemplate = (content)=>`
+export const indexTemplate = (content) => `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +7,7 @@ export const indexTemplate = (content)=>`
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reddit</title>
+  <link rel="stylesheet" src="/dist/css/style.min.css">
   <script src="/static/client.js" type="application/javascript"></script>
 </head>
 
@@ -15,4 +16,4 @@ export const indexTemplate = (content)=>`
 </body>
 
 </html>
-`;
+`
