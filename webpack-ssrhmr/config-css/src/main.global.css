@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,
+:active {
+    outline: none;
+}
+a:focus,
+a:active {
+    outline: none;
+}
+aside,
+nav,
+footer,
+header,
+section {
+    display: block;
+}
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+body {
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input::-ms-clear {
+    display: none;
+}
+button {
+    cursor: pointer;
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+a,
+a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+ul li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --green: #d4edda;
+    --border-green: #c3e6cb;
+    --yellow: #fff3cd;
+    --border-yellow: #ffeeba;
+    --red: #f8d7da;
+    --border-red: #f5c6cb;
+}
+
+body {
+    font-family: "Roboto", serif;
+}
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/*Alert type color*/
+.warning {
+    background-color: var(--yellow);
+    border: 1px solid var(--border-yellow);
+}
+.error {
+    background-color: var(--red);
+    border: 1px solid var(--border-red);
+}
+.success {
+    background-color: var(--green);
+    border: 1px solid var(--border-green);
+}
+
+/* Alert anim action*/
+
+.alert-enter {
+    opacity: 0;
+    transform: scale(0.9);
+}
+.alert-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 500ms, transform 500ms;
+}
+.alert-exit {
+    opacity: 1;
+}
+.alert-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 500ms, transform 500ms;
+}
+
+/* Delete Modal animation*/
+.deleteModal-enter {
+    opacity: 0;
+}
+.deleteModal-enter-active {
+    opacity: 1;
+    transition: opacity 500ms, transform 500ms;
+}
+.deleteModal-exit {
+    opacity: 1;
+}
+.deleteModal-exit-active {
+    opacity: 0;
+    transition: opacity 500ms, transform 500ms;
+}
+
+/* Card Animation */
+.card-enter,
+.modal-enter {
+    opacity: 0;
+    transform: scale(0);
+}
+.card-enter-active,
+.modal-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 500ms, transform 500ms;
+}
+.card-exit,
+.modal-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+.card-exit-active,
+.modal-exit-active {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 500ms, transform 500ms;
+}
+
+/* Modal Form styles */
+.input {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+    width: calc(50% - 10px);
+    position: relative;
+}
+.input.invalid input,
+.input.invalid.textarea textarea {
+    border: 1px solid red;
+}
+.input.textarea {
+    width: 100%;
+}
+.input.textarea textarea {
+    width: 100%;
+    resize: none;
+    height: 70px;
+    border-radius: 5px;
+    border: 1px solid green;
+    padding: 5px 10px;
+}
+.input[data-size="small"] {
+    width: calc(25% - 10px);
+}
+
+.input label {
+    display: inline-block;
+    margin: 0 0 5px 0;
+}
+.input input {
+    border-radius: 5px;
+    border: 1px solid green;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.input span {
+    color: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.input.invalid span {
+    opacity: 1;
+    transform: translateY(110%);
+}
+
+@media all and (max-width: 992px) {
+    .input {
+        width: 100%;
+    }
+    .input[data-size="small"] {
+        width: calc(50% - 10px);
+    }
+}
+@media all and (max-width: 768px) {
+    .input[data-size="small"] {
+        width: 100%;
+    }
+}
