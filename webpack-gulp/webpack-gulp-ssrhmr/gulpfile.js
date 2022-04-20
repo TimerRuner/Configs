@@ -39,7 +39,7 @@ const path = {
         images: `${srcFolder}/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}`,
         files: `${srcFolder}/files/**/*.*`,
     },
-    clean: buildFolder,
+    clean: "./dist/assets",
     buildFolder: buildFolder,
     srcFolder: srcFolder,
     rootFolder: rootFolder,
@@ -110,29 +110,18 @@ const scss = () => {
                     outputStyle: "expanded",
                 })
             )
-            .pipe(app.plugins.if(app.isBuild, groupCssMediaQueries()))
+            .pipe(groupCssMediaQueries())
             .pipe(
-                app.plugins.if(
-                    app.isBuild,
-                    autoprefixer({
-                        grid: true,
-                        overrideBrowserslist: ["last 3 versions"],
-                        cascade: true,
-                    })
-                )
+                autoprefixer({
+                    grid: true,
+                    overrideBrowserslist: ["last 3 versions"],
+                    cascade: true,
+                })
             )
-            .pipe(
-                app.plugins.if(
-                    app.isBuild,
-                    webpcss({
-                        webpClass: ".webp",
-                        noWebpClass: ".no-webp",
-                    })
-                )
-            )
+
             // Раскомментировать если нужен не сжатый дубль файла стилей
             .pipe(app.gulp.dest(app.path.build.css))
-            .pipe(app.plugins.if(app.isBuild, cleanCss()))
+            .pipe(cleanCss())
             .pipe(
                 rename({
                     extname: ".min.css",
@@ -165,15 +154,12 @@ const images = () => {
             .pipe(app.gulp.src(app.path.src.images))
             .pipe(app.plugins.newer(app.path.build.images))
             // .pipe(
-            //     app.plugins.if(
-            //         app.isBuild,
-            //         imagemin({
-            //             progressive: true,
-            //             svgoPlugins: [{ removeViewBox: false }],
-            //             interlaced: true,
-            //             optimizationLevel: 3, // 0 to 7
-            //         })
-            //     )
+            //     imagemin({
+            //         progressive: true,
+            //         svgoPlugins: [{ removeViewBox: false }],
+            //         interlaced: true,
+            //         optimizationLevel: 3, // 0 to 7
+            //     })
             // )
             .pipe(app.gulp.dest(app.path.build.images))
             .pipe(app.gulp.src(app.path.src.svg))
@@ -399,3 +385,4 @@ const deployFTP = gulp.series(reset, mainTasks, ftp)
 
 // Выполнение сценария по умолчанию
 gulp.task("default", dev)
+gulp.task("build", build)

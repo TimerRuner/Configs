@@ -81,134 +81,165 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/server/server.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
 
-/***/ "./src/App.tsx":
-/*!*********************!*\
-  !*** ./src/App.tsx ***!
-  \*********************/
-/*! no static exports found */
+module.exports = require("react");
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-hot-loader/root");
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.App = exports.AppCopmonent = void 0;\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"react\"));\r\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"react-hot-loader/root\");\r\nvar Header_1 = __webpack_require__(/*! ./shared/Header */ \"./src/shared/Header.tsx\");\r\nfunction AppCopmonent() {\r\n    return react_1.default.createElement(Header_1.Header, null);\r\n}\r\nexports.AppCopmonent = AppCopmonent;\r\nexports.App = (0, root_1.hot)(function () { return react_1.default.createElement(AppCopmonent, null); });\r\n\n\n//# sourceURL=webpack:///./src/App.tsx?");
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = __importDefault(__webpack_require__(3));
+var server_1 = __importDefault(__webpack_require__(4));
+var App_tsx_1 = __webpack_require__(5);
+var indexTemplate_1 = __webpack_require__(8);
+var compression_1 = __importDefault(__webpack_require__(9));
+var helmet_1 = __importDefault(__webpack_require__(10));
+var PORT = process.env.PORT || 3000;
+var app = (0, express_1.default)();
+app.use((0, compression_1.default)());
+app.use((0, helmet_1.default)({
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+}));
+app.use("/static", express_1.default.static("./dist/client"));
+app.use("/dist", express_1.default.static("./dist/assets"));
+app.get("*", function (req, res) {
+    res.send((0, indexTemplate_1.indexTemplate)(server_1.default.renderToString((0, App_tsx_1.App)())));
+});
+app.listen(PORT, function () {
+    console.log("server started on port http://localhost:".concat(PORT));
+});
+
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
 
-/***/ "./src/server/indexTemplate.js":
-/*!*************************************!*\
-  !*** ./src/server/indexTemplate.js ***!
-  \*************************************/
-/*! no static exports found */
+module.exports = require("express");
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-dom/server");
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.indexTemplate = void 0;\r\nvar indexTemplate = function (content) { return \"\\n<!DOCTYPE html>\\n<html lang=\\\"en\\\">\\n\\n<head>\\n  <meta charset=\\\"UTF-8\\\">\\n  <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\">\\n  <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n  <title>Reddit</title>\\n  <link rel=\\\"stylesheet\\\" src=\\\"/dist/css/style.min.css\\\">\\n  <script src=\\\"/static/client.js\\\" type=\\\"application/javascript\\\"></script>\\n</head>\\n\\n<body>\\n  <div id=\\\"react_root\\\">\".concat(content, \"</div>\\n</body>\\n\\n</html>\\n\"); };\r\nexports.indexTemplate = indexTemplate;\r\n\n\n//# sourceURL=webpack:///./src/server/indexTemplate.js?");
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.App = exports.AppCopmonent = void 0;
+var react_1 = __importDefault(__webpack_require__(0));
+var root_1 = __webpack_require__(1);
+var Header_1 = __webpack_require__(6);
+function AppCopmonent() {
+    return react_1.default.createElement(Header_1.Header, null);
+}
+exports.AppCopmonent = AppCopmonent;
+exports.App = (0, root_1.hot)(function () { return react_1.default.createElement(AppCopmonent, null); });
+
 
 /***/ }),
-
-/***/ "./src/server/server.js":
-/*!******************************!*\
-  !*** ./src/server/server.js ***!
-  \******************************/
-/*! no static exports found */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\r\nvar server_1 = __importDefault(__webpack_require__(/*! react-dom/server */ \"react-dom/server\"));\r\nvar App_tsx_1 = __webpack_require__(/*! ../App.tsx */ \"./src/App.tsx\");\r\nvar indexTemplate_1 = __webpack_require__(/*! ./indexTemplate */ \"./src/server/indexTemplate.js\");\r\nvar compression_1 = __importDefault(__webpack_require__(/*! compression */ \"compression\"));\r\nvar helmet_1 = __importDefault(__webpack_require__(/*! helmet */ \"helmet\"));\r\nvar PORT = process.env.PORT || 3000;\r\nvar app = (0, express_1.default)();\r\napp.use((0, compression_1.default)());\r\napp.use((0, helmet_1.default)({\r\n    contentSecurityPolicy: false,\r\n    crossOriginEmbedderPolicy: false,\r\n}));\r\napp.use(\"/static\", express_1.default.static(\"./dist/client\"));\r\napp.use(\"/dist\", express_1.default.static(\"./dist/assets\"));\r\napp.get(\"*\", function (req, res) {\r\n    res.send((0, indexTemplate_1.indexTemplate)(server_1.default.renderToString((0, App_tsx_1.App)())));\r\n});\r\napp.listen(PORT, function () {\r\n    console.log(\"server started on port http://localhost:\".concat(PORT));\r\n});\r\n\n\n//# sourceURL=webpack:///./src/server/server.js?");
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Header = void 0;
+var root_1 = __webpack_require__(1);
+var React = __importStar(__webpack_require__(0));
+var header_css_1 = __importDefault(__webpack_require__(7));
+function HeaderComponent() {
+    return (React.createElement("header", null,
+        React.createElement("h1", { className: header_css_1.default.example }, "Hello new Config"),
+        React.createElement("img", { style: { width: "420px", height: "300px" }, src: "/dist/img/cover.webp" })));
+}
+exports.Header = (0, root_1.hot)(HeaderComponent);
+
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports) {
 
-/***/ "./src/shared/Header.tsx":
-/*!*******************************!*\
-  !*** ./src/shared/Header.tsx ***!
-  \*******************************/
-/*! no static exports found */
+// Exports
+module.exports = {
+	"example": "header__example--QgiVa"
+};
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    var desc = Object.getOwnPropertyDescriptor(m, k);\r\n    if (!desc || (\"get\" in desc ? !m.__esModule : desc.writable || desc.configurable)) {\r\n      desc = { enumerable: true, get: function() { return m[k]; } };\r\n    }\r\n    Object.defineProperty(o, k2, desc);\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.Header = void 0;\r\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"react-hot-loader/root\");\r\nvar React = __importStar(__webpack_require__(/*! react */ \"react\"));\r\nvar header_css_1 = __importDefault(__webpack_require__(/*! ./header.css */ \"./src/shared/header.css\"));\r\nfunction HeaderComponent() {\r\n    return (React.createElement(\"header\", null,\r\n        React.createElement(\"h1\", { className: header_css_1.default.example }, \"Reddit for our own\"),\r\n        React.createElement(\"img\", { src: \"/dist/img/cover.webp\" })));\r\n}\r\nexports.Header = (0, root_1.hot)(HeaderComponent);\r\n\n\n//# sourceURL=webpack:///./src/shared/Header.tsx?");
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.indexTemplate = void 0;
+var indexTemplate = function (content) { return "\n<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Reddit</title>\n  <link rel=\"stylesheet\" src=\"/dist/css/style.min.css\">\n  <script src=\"/static/client.js\" type=\"application/javascript\"></script>\n</head>\n\n<body>\n  <div id=\"react_root\">".concat(content, "</div>\n</body>\n\n</html>\n"); };
+exports.indexTemplate = indexTemplate;
+
 
 /***/ }),
-
-/***/ "./src/shared/header.css":
-/*!*******************************!*\
-  !*** ./src/shared/header.css ***!
-  \*******************************/
-/*! no static exports found */
+/* 9 */
 /***/ (function(module, exports) {
 
-eval("// Exports\nmodule.exports = {\n\t\"example\": \"header__example--QgiVa\"\n};\n\n\n//# sourceURL=webpack:///./src/shared/header.css?");
+module.exports = require("compression");
 
 /***/ }),
-
-/***/ "compression":
-/*!******************************!*\
-  !*** external "compression" ***!
-  \******************************/
-/*! no static exports found */
+/* 10 */
 /***/ (function(module, exports) {
 
-eval("module.exports = require(\"compression\");\n\n//# sourceURL=webpack:///external_%22compression%22?");
-
-/***/ }),
-
-/***/ "express":
-/*!**************************!*\
-  !*** external "express" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
-
-/***/ }),
-
-/***/ "helmet":
-/*!*************************!*\
-  !*** external "helmet" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"helmet\");\n\n//# sourceURL=webpack:///external_%22helmet%22?");
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_%22react%22?");
-
-/***/ }),
-
-/***/ "react-dom/server":
-/*!***********************************!*\
-  !*** external "react-dom/server" ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
-
-/***/ }),
-
-/***/ "react-hot-loader/root":
-/*!****************************************!*\
-  !*** external "react-hot-loader/root" ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"react-hot-loader/root\");\n\n//# sourceURL=webpack:///external_%22react-hot-loader/root%22?");
+module.exports = require("helmet");
 
 /***/ })
-
-/******/ });
+/******/ ]);
